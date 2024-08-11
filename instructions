@@ -1,0 +1,20 @@
+✓- basic operations
+   |- add, subtract, multiply, divide
+
+✓- 3 variables
+   |- number, operator, another number
+   |- used to update the display later
+
+✓- create function 'operate': 
+   |- takes the operator and numbers to call above functions
+
+- basic html with buttons for
+  |- above functions and equals key 
+  |- no wiring the js yet
+  |- add display with dummy numbers
+  |- add 'clear' button
+
+- create function that populate the display when you click the number buttons 
+   |- store 'display value' somewhere for next step
+
+- make the calculator work
