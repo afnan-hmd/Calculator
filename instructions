@@ -8,7 +8,7 @@
 ✓- create function 'operate': 
    |- takes the operator and numbers to call above functions
 
-- basic html with buttons for
+✓ basic html with buttons for
   |- above functions and equals key 
   |- no wiring the js yet
   |- add display with dummy numbers

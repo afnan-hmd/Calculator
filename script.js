@@ -1,3 +1,5 @@
+const display = document.querySelector('#display');
+const buttons = document.querySelectorAll('button');
 
 function add (a, b) {return a + b}
 function subtract (a, b) {return a - b}
@@ -9,7 +11,8 @@ function divide (a, b) {
 
 let firstNumber;
 let operator;
-let secondNumber
+let secondNumber;
+let displayedValue;
 
 function operate (firstNumber, secondNumber, operator) {
     switch (operator) {
@@ -27,3 +30,12 @@ function operate (firstNumber, secondNumber, operator) {
             break;
     }
 }
+
+function updateDisplay (e) {
+    display.textContent = e.target.id;
+    console.log(e.target.id);
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', updateDisplay)
+});
