@@ -1,5 +1,11 @@
 const display = document.querySelector('#display');
 const buttons = document.querySelectorAll('button');
+const operation = document.querySelectorAll('operation');
+
+let firstNumber;
+let operator;
+let secondNumber;
+let displayedValue;
 
 function add (a, b) {return a + b}
 function subtract (a, b) {return a - b}
@@ -8,11 +14,6 @@ function divide (a, b) {
     if (b == 0) {return 'lmao'}
     else {return a / b}
 }
-
-let firstNumber;
-let operator;
-let secondNumber;
-let displayedValue;
 
 function operate (firstNumber, secondNumber, operator) {
     switch (operator) {
@@ -32,8 +33,14 @@ function operate (firstNumber, secondNumber, operator) {
 }
 
 function updateDisplay (e) {
-    display.textContent = e.target.id;
-    console.log(e.target.id);
+    let value = e.target.id;      
+    if (e.target.classList.contains('operation')) {
+        display.textContent = '';
+        display.textContent = value;
+    } else {
+        display.textContent += value;
+    }
+    // display.textContent = e.target.id;
 }
 
 buttons.forEach((button) => {

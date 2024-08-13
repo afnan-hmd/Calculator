@@ -14,7 +14,7 @@ body {
 
 .container {
     width: 320px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 12px;
     padding: 20px;
     display: flex;
@@ -42,7 +42,7 @@ button {
     height: 64px;
     cursor:pointer;
 }
-#zero {
+.zero {
     width: 136px;
     border-radius: 46px;
     padding-left: 30px;
