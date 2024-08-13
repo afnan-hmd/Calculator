@@ -1,7 +1,49 @@
 body {
-
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Trebuchet MS', sans-serif;
 }
-
+* { box-sizing: border-box }
 .container {
-    background-color: grey;
+    width: 300px;
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+#display {
+    width: 260px;
+    height: 74px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    font-size: 64px;
+}
+button {
+    border: none;;
+    text-decoration: none;
+    background-color: #343434;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+#zero {
+    width: 136px;
+    border-radius: 46px;
+    padding-left: 30px;
+    text-align: start;
+    
+}
+.meow {
+    background-color: #CECFD3;
+    color: black;
+}
+.operation {
+    background-color: #F88A11;
 }
