@@ -4,10 +4,9 @@ const operation = document.querySelectorAll('operation');
 const functionBtn = document.querySelectorAll('functionBtn');
 const equals = document.querySelector('equals');
 
-let firstNumber;
+let previousNum;
 let operator;
-let secondNumber;
-let displayedValue;
+let currentNum;
 
 function add (a, b) {return a + b}
 function subtract (a, b) {return a - b}
@@ -17,46 +16,59 @@ function divide (a, b) {
     else {return a / b}
 }
 
-function operate (firstNumber, secondNumber, operator) {
+function operate (a, b, operator) {
     switch (operator) {
         case '+':
-            return add(firstNumber, secondNumber);
+            return add(a, b);
             break;
         case '-':
-            return subtract(firstNumber, secondNumber);
+            return subtract(a, b);
             break;
         case '*':
-            return multiply(firstNumber, secondNumber);
+            return multiply(a, b);
             break;
         case '/':
-            return divide(firstNumber, secondNumber);
+            return divide(a, b);
             break;
     }
 }
 
 function updateDisplay (e) {
     let value = e.target.id;
-    let firstNumber = 0;
-    let secondNumber = 0;
-    let operator = "";
+    let previousNum = 0;
+    let currentNum = 0;
+    let result;
+    operator;
+    negativeCounter = 1;
 
-    if (e.target.classList.contains('equals')) {
-        secondNumber = Number(display.textContent);
-        let result = operate (firstNumber, secondNumber, operator);
-        display.textContent = result;
-    }   
-    else if ((e.target.classList.contains('operation')) || (e.target.classList.contains('functionBtn'))) {
-        firstNumber = Number(display.textContent);
+    if (e.target.classList.contains('operation')) {
         operator = value;
         display.textContent = '';
-        display.textContent = value;
-    } else {
-        display.textContent += value;
+        display.textContent = operator;
+        let result = operate (Number(previousNum), Number(currentNum), operator);
+        currentNum = result;
+        display.textContent = currentNum;
+    } 
+    else if (e.target.classList.contains('functionBtn')) {
+        switch (value) {
+            case 'AC':
+                display.textContent = " ";
+                currentNum = 0; previousNum = 0; operator = null;
+                break;
+            case '%':
+                currentNum /= 100;
+                display.textContent = currentNum;
+                break;
+            case 'negative':
+                currentNum *= -1;
+                display.textContent = currentNum;
+                break;
+        }
     }
-
-    console.log(firstNumber);
-    console.log(secondNumber);
-    console.log(operator);
+    else {
+        display.textContent += value;
+        currentNum = display.textContent;
+    }
 }
 
 buttons.forEach((button) => {
