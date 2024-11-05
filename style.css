@@ -30,6 +30,7 @@ body {
     align-items: center;
     color: white;
     font-size: 64px;
+    overflow: hidden;
 }
 button {
     border: none;;
@@ -49,11 +50,11 @@ button {
     text-align: start;
     
 }
-.meow {
+.functionBtn {
     background-color: #CECFD3;
     color: black;
 }
-.operation {
+.operation, .equals {
     background-color: #F88A11;
 }
 
