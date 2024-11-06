@@ -35,10 +35,12 @@ function updateDisplay (e) {
         display.textContent = '';
         display.textContent = operator;
 
-        currentNum = operate (Number(previousNum), Number(currentNum), operator);
+        let result = operate (Number(previousNum), Number(currentNum), operator);
+        previousNum = result;
+        currentNum = 0;
         setTimeout(() => {
-            display.textContent = currentNum;
-          }, 4 * secInMilliseconds)
+            display.textContent = result;
+          }, 3 * secInMilliseconds)
     } 
     else if (e.target.classList.contains('functionBtn')) {
         switch (value) {
@@ -58,7 +60,7 @@ function updateDisplay (e) {
     }
     else {
         display.textContent += value;
-        currentNum = display.textContent;
+        currentNum = Number(display.textContent);
     }
 }
 
