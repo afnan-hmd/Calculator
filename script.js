@@ -32,31 +32,40 @@ function resetDisplay () {
     operator = null;
     display.textContent = previousNum;
 }
-
+// asses if this is necessary :3
 function resetOperation () {
     currentNum = null;
     operator = null;
     // fix this
-    console.log(previousNum)
+    console.log(`prev (reset): ${previousNum}`);
 }
 function updateDisplay (e) {
     let value = e.target.id;
 
     if (e.target.classList.contains('operation')) {
+        // perv doesnt get updated
+        console.log(`current op: ${currentNum}`);
+        console.log(`prev op: ${previousNum}`);
+        console.log(`operator: ${operator}`);
+        
         if ((currentNum != null) && (operator != null)) {
             let result = operate (Number(previousNum), Number(currentNum), operator);
             previousNum = result;
+            display.textContent = `${result}`;
             currentNum = null;
-            display.textContent = result; 
         } else if (currentNum == null) {
             operator = value;
             previousNum = Number(display.textContent);
-            currentNum = null;
             display.textContent = `${operator}`;
+            console.log(`prev op meowmeow: ${previousNum}`);
         }
         else {
             resetDisplay();
         }
+        // fix: prev is always reseted b4 operation & new current doesnt get
+        // recorded properly 
+        console.log(`current op meow: ${currentNum}`);
+        console.log(`prev op meow: ${previousNum}`);
     } 
     else if (e.target.classList.contains('functionBtn')) {
         switch (value) {
@@ -76,12 +85,14 @@ function updateDisplay (e) {
     else if (e.target.classList.contains('equals')) {
         let result = operate (Number(previousNum), Number(currentNum), operator);
         previousNum = result;
-        display.textContent = result;
+        console.log(`prev result: ${previousNum}`);
+        display.textContent = `${result}`;;
         resetOperation();
     }
     else {
-        display.textContent = display.textContent.concat(value)
+        display.textContent += `${value}`;
         currentNum = Number(display.textContent);
+        // console.log(currentNum);
     }
 }
 

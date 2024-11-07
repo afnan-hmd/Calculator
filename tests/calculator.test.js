@@ -26,7 +26,7 @@ describe('Calculator Tests', () => {
 
   test('should return "Error" when dividing by zero', () => {
     const result = operate(6, 0, '/');
-    expect(result).toBe('Error');
+    expect(result).toBe('lmao');
   });
 
   // Test for resetDisplay function

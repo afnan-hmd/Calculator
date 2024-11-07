@@ -14,7 +14,7 @@
   |- add display with dummy numbers
   |- add 'clear' button
 
-- create function that populate the display when you click the number buttons 
+✓ create function that populate the display when you click the number buttons 
    |- store 'display value' somewhere for next step
 
 - make the calculator work
