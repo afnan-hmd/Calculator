@@ -43,6 +43,9 @@ button {
     height: 64px;
     cursor:pointer;
 }
+button:hover {
+    opacity: 90%;
+  }
 .zero {
     width: 136px;
     border-radius: 46px;

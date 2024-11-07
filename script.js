@@ -1,13 +1,12 @@
 const display = document.querySelector('#display');
 const buttons = document.querySelectorAll('button');
-const operation = document.querySelectorAll('operation');
-const functionBtn = document.querySelectorAll('functionBtn');
-const equals = document.querySelector('equals');
+const operation = document.querySelectorAll('.operation');
+const functionBtn = document.querySelectorAll('.functionBtn');
+const equals = document.querySelector('.equals');
 
-var secInMilliseconds = 1000;
 let previousNum = 0;
-let operator;
-let currentNum = 0;
+let operator = null;
+let currentNum = null;
 
 function operate (a, b, operator) {
     switch (operator) {
@@ -22,31 +21,47 @@ function operate (a, b, operator) {
             break;
         case '/':
             if (b == 0) {return 'lmao'}
-            else {return a / b}
+            else {return (a / b)}
             break;
     }
 }
 
+function resetDisplay () {
+    previousNum = 0;
+    currentNum = null;
+    operator = null;
+    display.textContent = previousNum;
+}
+
+function resetOperation () {
+    currentNum = null;
+    operator = null;
+    // fix this
+    console.log(previousNum)
+}
 function updateDisplay (e) {
     let value = e.target.id;
 
     if (e.target.classList.contains('operation')) {
-        operator = value;
-        display.textContent = '';
-        display.textContent = operator;
-
-        let result = operate (Number(previousNum), Number(currentNum), operator);
-        previousNum = result;
-        currentNum = 0;
-        setTimeout(() => {
-            display.textContent = result;
-          }, 3 * secInMilliseconds)
+        if ((currentNum != null) && (operator != null)) {
+            let result = operate (Number(previousNum), Number(currentNum), operator);
+            previousNum = result;
+            currentNum = null;
+            display.textContent = result; 
+        } else if (currentNum == null) {
+            operator = value;
+            previousNum = Number(display.textContent);
+            currentNum = null;
+            display.textContent = `${operator}`;
+        }
+        else {
+            resetDisplay();
+        }
     } 
     else if (e.target.classList.contains('functionBtn')) {
         switch (value) {
             case 'AC':
-                display.textContent = " ";
-                currentNum = 0; previousNum = 0; operator = null;
+                resetDisplay();
                 break;
             case '%':
                 currentNum /= 100;
@@ -58,8 +73,14 @@ function updateDisplay (e) {
                 break;
         }
     }
+    else if (e.target.classList.contains('equals')) {
+        let result = operate (Number(previousNum), Number(currentNum), operator);
+        previousNum = result;
+        display.textContent = result;
+        resetOperation();
+    }
     else {
-        display.textContent += value;
+        display.textContent = display.textContent.concat(value)
         currentNum = Number(display.textContent);
     }
 }
