@@ -48,19 +48,23 @@ function updateDisplay (e) {
         console.log(`prev op: ${previousNum}`);
         console.log(`operator: ${operator}`);
         
-        if ((currentNum != null) && (operator != null)) {
+        if ((previousNum == 0) && (currentNum == null) && (operator == null)) {
+            operator = value;
+            display.textContent = `${operator}`;
+        } else if ((currentNum != null) && (operator != null)) {
             let result = operate (Number(previousNum), Number(currentNum), operator);
             previousNum = result;
             display.textContent = `${result}`;
-            currentNum = null;
-        } else if (currentNum == null) {
+            resetOperation();
+        } else if ((currentNum == null) && (operator == null)) {
             operator = value;
             previousNum = Number(display.textContent);
             display.textContent = `${operator}`;
             console.log(`prev op meowmeow: ${previousNum}`);
         }
         else {
-            resetDisplay();
+            display.textContent = `error`;
+            // resetDisplay();
         }
         // fix: prev is always reseted b4 operation & new current doesnt get
         // recorded properly 
@@ -73,7 +77,7 @@ function updateDisplay (e) {
                 resetDisplay();
                 break;
             case '%':
-                currentNum /= 100;
+                currentNum *= 0.01;
                 display.textContent = currentNum;
                 break;
             case 'negative':
@@ -90,9 +94,14 @@ function updateDisplay (e) {
         resetOperation();
     }
     else {
-        display.textContent += `${value}`;
-        currentNum = Number(display.textContent);
-        // console.log(currentNum);
+        if ((previousNum == 0) && (currentNum == null) && (operator == null)) {
+            display.textContent += `${value}`;
+            previousNum = Number(display.textContent);
+            // console.log();
+        } else {
+            display.textContent += `${value}`;
+            currentNum = Number(display.textContent);
+        }
     }
 }
 
